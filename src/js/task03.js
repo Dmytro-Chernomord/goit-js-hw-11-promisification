@@ -3,13 +3,13 @@ const randomIntegerFromInterval = (min, max) => {
 };
 
 const makeTransaction = transaction => {
-  const delay = randomIntegerFromInterval(200, 500);
   return new Promise((resoslve, reject) => {
+    const delay = randomIntegerFromInterval(200, 500);
     setTimeout(() => {
       const canProcess = Math.random() > 0.3;
-
+      console.log(delay);
       if (canProcess) {
-        resoslve(transaction.id, delay);
+        resoslve([transaction.id, delay]);
       } else {
         reject(transaction.id);
       }
@@ -17,7 +17,7 @@ const makeTransaction = transaction => {
   });
 };
 
-const logSuccess = (id, time) => {
+const logSuccess = ([id, time]) => {
   console.log(`Transaction ${id} processed in ${time}ms`);
 };
 
